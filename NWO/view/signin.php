@@ -47,7 +47,7 @@
     </fieldset>
 </form>
 
-      <center><a href="https://web.njit.edu/~erc7/NWO/view/register.php" class="link2">Create an Account</a></center>
+      <center><a href="register.php" class="link2">Create an Account</a></center>
 
 
 </body>

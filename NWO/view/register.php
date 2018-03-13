@@ -25,7 +25,7 @@
 	<br>
 	<br>
 	<br>
-	<center><h3><b><font color = "#4CAF50">- TEAM NWO - Please Login - </h3></b></center>
+	<center><h3><b><font color = "#4CAF50">- TEAM NWO Registration- </h3></b></center>
 	<br>
 <div class="container">
 

@@ -5,11 +5,15 @@ require ('../model/todo_db.php');
 
 session_start();
 
+
+ses_logut($_SESSION['id'],$_SESSION['email']);
+
+
 session_unset();
 
 session_destroy();
 
-header("location:https://web.njit.edu/~erc7/NWO/index.html");
+header("location:../");
 
 exit();
 

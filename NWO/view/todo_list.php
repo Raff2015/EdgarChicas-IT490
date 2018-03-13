@@ -2,8 +2,6 @@
 
 <html lang="en">
 <head>
-  
-  <!--------------------------------------->
 <link rel="stylesheet" type="text/css" href="t.css">
     <link rel="stylesheet" type="text/css" href="Content/css/a.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -56,39 +54,104 @@ table.minimalistBlack tfoot td {
 </head>
 <body>
 
-    <div class = "container">
+    <div class = "container"> 
 
         <h2><?php echo "Welcome, " . $username; ?></h2>
 
+    <br>
+       
+        <br>
+        <br>
+       
+        <table class="minimalistBlack" >
+            <tr>
+                <th> Start Date </th>
+                <th> Message </th>
+                <th> Due Date </th>
+                <th> </th>
+                <th> </th>
+                <th> </th>
+            </tr>
+            <?php foreach ($items as $item) : ?>
+                <?php if($item['isdone'] == 0) :?>
+                    <tr>
+                        <td><?php echo date('d-m-Y', strtotime($item['createddate'])); ?></td>
+                        <td><?php echo $item['message']; ?></td>
+                        <td><?php echo date('d-m-Y', strtotime($item['duedate'])); ?></td>
 
+                        <td><form action="." method="post">
+                            <input type="hidden" name="action"
+                                value="delete_item">
+                            <input type="hidden" name="id"
+                                value="<?php echo $item['id']; ?>">
+                            <input type="submit" class = "table_button" value="Delete">
+                        </form></td>
 
+                        <td><form action="." method="post">
+                            <input type="hidden" name="action"
+                                value="complete_item">
+                            <input type="hidden" name="id"
+                                value="<?php echo $item['id']; ?>">
+                            <input type="submit" class = "table_button"  value="Completed">
+                        </form></td>
 
+                        <td><form action="." method="post">
+                            <input type="hidden" name="action"
+                                value="show_edit_form">
+                            <input type="hidden" name="id"
+                                value="<?php echo $item['id']; ?>">
+                            <input type="submit" class = "table_button"  value="Edit">
+                        </form></td>
 
+                    </tr>
+                <?php endif; ?>
+            <?php endforeach; ?>
+
+        </table>
+<br>
+        <div class = "link2"><a href="?action=show_add_form" >Add Item</a></div>
+
+       <h1>Completed Items</h1>
+
+       <table class="minimalistBlack">
+            <tr>
+                <th> Start Date </th>
+                <th> Message </th>
+                <th> Due Date </th>
+                <th> </th>
+                <th> </th>
+            </tr>
+            <?php foreach ($items as $item) : ?>
+                <?php if($item['isdone'] == 1) :?>
+                    <tr>
+                        <td><?php echo date('d-m-Y', strtotime($item['createddate'])); ?></td>
+                        <td><?php echo $item['message']; ?></td>
+                        <td><?php echo date('d-m-Y', strtotime($item['duedate'])); ?></td>
+
+                        <td><form action="." method="post">
+                            <input type="hidden" name="action"
+                                value="delete_item">
+                            <input type="hidden" name="id"
+                                value="<?php echo $item['id']; ?>">
+                            <input type="submit" class = "table_button" value="Delete">
+                        </form></td>
+
+                        <td><form action="." method="post">
+                            <input type="hidden" name="action"
+                                value="show_edit_form">
+                            <input type="hidden" name="id"
+                                value="<?php echo $item['id']; ?>">
+                            <input type="submit" class = "table_button" value="Edit">
+                        </form></td>
+
+                    </tr>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </table>
+        <br>
+        
         <div class = "link2"><a href = logout.php> Sign Out </a></div>
     </div>
 
-
-    <div class="container">
-      <div class="jumbotron">
-        <h3 class="text-center">Search For Any Movie</h3>
-        <form id="searchForm">
-          <input type="text" class="form-control" id="searchText" placeholder="Search Movie....">
-        </form>
-      </div>
-    </div>
-
-    <div class="container">
-      <div id="movies" class="row"></div>
-    </div>
-
-
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="Scripts/js/jquery-3.2.1.min.js"></script>
-    <script src="Scripts/js/bootstrap.min.js"></script>
-    <script src="Scripts/js/axios.min.js"></script>
-    <script type="text/javascript" src="Scripts/js/main.js"></script>
-  </body>
-
-  </html>
-
+</body>
 <?php include '../view/footer.php'; ?>
