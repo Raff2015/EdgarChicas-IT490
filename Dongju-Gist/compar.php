@@ -1,24 +1,55 @@
-1 <?php
-  2 $localData = file_get_contents("autoData");
-  3 $localData = json_decode($localData, true);
-  4 $testArray = array(
-  5   'Title'=>'Test';
-  6   'Director'=>'TestDir';
-  7   'Runtime'=>'164 min';
-  8   'ACtors'=>'testAct1', 'testAct2';
-  9 );
- 10 
- 11 function checkDiff($localData, $arr1){
- 12  if($localData == $arr1){
- 13         echo "No change necessary.";
- 14  }
- 15 else{
- 16  foreach($arr1 in $localData){
- 17     $difference = array_diff($localData, $arr1);
- 18     echo "Changes necessary. Following needs to be changed into:";
- 19     return($difference);
- 20     print_r($difference);
- 21   }
- 22  }
- 23 }
-~       
+#!/usr/bin/php
+<?php
+(include "test14.php");
+$localData = (file("autoData"));
+$result = array();
+foreach($localData as $line){
+	if(stripos($line, "Title") > -1 | stripos($line, "Director") > -1 | stripos($line, "Runtime") > -1 | stripos($line, "Actors") > -1){
+		array_push($result, $line);
+	}
+}
+
+
+/*
+function array_psearch($arr, $keyword){
+ foreach($arr as $index => $string){
+  if (strpos($string, $keyword) !== False){
+    return $index+1;
+  }
+ }
+}
+
+
+
+$comparison = array("[Title]", "[Director]", "[Runtime]", "[Actors]");
+print_r(array_psearch($comparison, "Director"));
+
+
+echo "count: ".count($result)."\n";
+
+for($i=0; $i<count($result); $i++){
+	if((array_psearch($result[$i], "Title")>0)){
+	  unset($result[$i]);
+	  echo $result[$i]."removed."."\n";
+	}
+}
+*/
+
+
+$testArray = array(
+  'Title'=>'Test',
+  'Director'=>'TestDir',
+  'Runtime'=>'164 min',
+  'Actors'=>'testAct1 '.'testAct2'
+);
+
+for($i=0; $i<stripos($result[$i], "Title"); $i++){
+  $temp = array();
+  array_push($temp, $result[$i]);
+  print_r(checkDiff($testArray, $temp));
+  array_pop($temp);
+}
+
+print_r($temp);
+
+?>
